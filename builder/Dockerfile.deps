@@ -1,0 +1,23 @@
+FROM debian:jessie
+
+MAINTAINER Cheng Kuan <lab@strllar.org>
+
+RUN apt-get update && apt-get install -y \
+wget \
+software-properties-common \
+git \
+pkg-config \
+libtool \
+automake \
+bison \
+flex \
+make \
+pandoc \
+libpq-dev
+
+RUN wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add -
+
+RUN add-apt-repository "deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.6 main"
+
+RUN apt-get update && apt-get install -y clang-3.6
+
