@@ -13,11 +13,12 @@ bison \
 flex \
 make \
 pandoc \
-libpq-dev
+libpq-dev \
+&& wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add - \
+&& add-apt-repository "deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.6 main" \
+&& apt-get update && apt-get install -y clang-3.6 \
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/*
 
-RUN wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add -
 
-RUN add-apt-repository "deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.6 main"
-
-RUN apt-get update && apt-get install -y clang-3.6
 
