@@ -2,7 +2,7 @@
 
 set -e
 
-CHOOSED_BRANCH=${BRANCH:-klm}
+CHOOSED_BRANCH=${BRANCH:-master}
 
 git clone -b ${CHOOSED_BRANCH} https://github.com/strllar/stellar-core.git
 
