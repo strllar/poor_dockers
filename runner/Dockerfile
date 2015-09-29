@@ -2,6 +2,8 @@ FROM debian:jessie
 
 MAINTAINER Cheng Kuan <lab@strllar.org>
 
+EXPOSE 11625 11626 12625 12626 13625 13626
+
 RUN apt-get update && apt-get install -y \
 curl \
 xz-utils \
