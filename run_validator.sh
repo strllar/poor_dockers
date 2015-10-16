@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
 
-docker build --rm=true -t validator -f runner/Dockerfile runner/ \
-	&& docker run --rm=true -ti \
-			  -p=13625:13625 \
-			  -v ~/.aws:/root/.aws \
-			  -v ~/.osscredentials:/root/.osscredentials \
-			  -v ~/core-built.tar.xz:/core-built.tar.xz \
-			  -v ~/core-run:/core-run \
-			  validator run klm
+XZ_FILE=~/core-built$1.tar.xz
+
+if [[ -e $XZ_FILE ]]
+then
+	docker build --rm=true -t validator -f runner/Dockerfile runner/ \
+		&& docker run --rm=true -ti \
+				  -p=13625:13625 \
+				  -v ~/.aws:/root/.aws \
+				  -v ~/.osscredentials:/root/.osscredentials \
+				  -v $XZ_FILE:/core-built.tar.xz \
+				  -v ~/core-run:/core-run \
+				  validator run klm
+else
+	echo "$XZ_FILE not exist"
+fi
